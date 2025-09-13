@@ -102,7 +102,17 @@ export default function App() {
     });
 
     const blob = doc.getZip().generate({ type: "blob" });
-    saveAs(blob, `Invoice_${form.invoiceNum}.docx`);
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `Invoice_${form.invoiceNum}.docx`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+    // saveAs(blob, `Invoice_${form.invoiceNum}.docx`);
 
 
     // const response = await fetch("/word_template.docx");

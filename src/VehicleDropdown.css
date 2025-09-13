@@ -1,17 +1,22 @@
+/* vehicleDropdown.css */
+
 .dropdown-container {
     position: relative;
     width: 100%;
+    /* takes full width of parent */
 }
 
 .dropdown-input {
-    /* width: 100%; */
-    width: 220px;
+    width: 100%;
+    /* ✅ makes it responsive */
     padding: 12px;
     border-radius: 10px;
     border: 1px solid #ccc;
     font-size: 1rem;
     outline: none;
     transition: all 0.2s;
+    box-sizing: border-box;
+    /* ✅ prevents overflow */
 }
 
 .dropdown-input:focus {

@@ -101,7 +101,11 @@ export default function App() {
       words: numberToWords(total),
     });
 
-    const blob = doc.getZip().generate({ type: "blob" });
+    const blob = doc.getZip().generate({
+      type: "blob",
+      mimeType:
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    });
     const url = URL.createObjectURL(blob);
 
     const link = document.createElement("a");

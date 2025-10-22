@@ -8,7 +8,7 @@ import "./App.css";
 
 export default function App() {
 
-  const today = new Date().toISOString().split("T")[0]; // "2025-09-12"
+  const today = new Date().toISOString().split("T")[0];
   const [form, setForm] = useState({
     weight: "",
     rate: "",
@@ -35,10 +35,6 @@ export default function App() {
     const [year, month, day] = isoDate.split("-");
     return `${day}-${month}-${year}`; // "12-09-2025"
   };
-
-  // const toFixed2 = (num) => {
-  //   return parseFloat(Number(num).toFixed(2));
-  // };
 
   const weight = parseFloat(form.weight) || 0;
   const rate = parseFloat(form.rate) || 0;
@@ -76,7 +72,7 @@ export default function App() {
     }
 
     if (total > 50000) {
-      alert("Grand total exceeds 50000."); // why this didn't worked
+      alert("Grand total exceeds 50000.");
       return;
     }
 
@@ -119,56 +115,11 @@ export default function App() {
     // saveAs(blob, `Invoice_${form.invoiceNum}.docx`);
 
 
-    // const response = await fetch("/word_template.docx");
-    // const buffer = await response.arrayBuffer();
-
-    // const createDoc = () => {
-    //   const zip = new PizZip(buffer);
-    //   const doc = new Docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
-    //   doc.render({
-    //     type1: "Original",
-    //     type2: "Duplicate",
-    //     invoiceNum: form.invoiceNum,
-    //     date: form.date,
-    //     vehicleNo: form.vehicleNo,
-    //     weight: form.weight,
-    //     rate: form.rate,
-    //     amount,
-    //     gst,
-    //     total,
-    //     words: numberToWords(total),
-    //   });
-    //   return doc.getZip().files["word/document.xml"].asText();
-    // };
-
-    // const xml1 = createDoc();
-    // // const xml2 = createDoc("Duplicate");
-
-    // // const mergedXml =
-    // //   xml1.replace("</w:body></w:document>", "") +
-    // //   '<w:p><w:r><w:br w:type="page"/></w:r></w:p>' +
-    // //   xml2.substring(xml2.indexOf("<w:body>") + 8);
-
-    // // const zip = new PizZip(buffer);
-    // // zip.file("word/document.xml", mergedXml);
-
-    // const blob = zip.generate({ type: "blob" });
-    // saveAs(blob, `Invoice_${form.invoiceNum}.docx`);
-
     // Increment invoice number for next bill
     const nextInvoice = parseInt(form.invoiceNum) + 1;
     localStorage.setItem("lastInvoice", nextInvoice);
     setForm((prev) => ({ ...prev, invoiceNum: nextInvoice.toString() }));
   };
-
-  // const printPreview = () => {
-  //   const printContents = document.getElementById("invoicePreview").innerHTML;
-  //   const originalContents = document.body.innerHTML;
-  //   document.body.innerHTML = printContents;
-  //   window.print();
-  //   document.body.innerHTML = originalContents;
-  //   window.location.reload(); // reload to restore React state
-  // };
 
   return (
     <div className="container">
@@ -183,13 +134,6 @@ export default function App() {
             value={form.invoiceNum}
             onChange={handleChange}
           />
-          {/* <input
-            type="text"
-            name="vehicleNo"
-            placeholder="Vehicle No."
-            value={form.vehicleNo}
-            onChange={handleChange}
-          /> */}
           <VehicleDropdown
             value={form.vehicleNo}
             onChange={(val) => setForm({ ...form, vehicleNo: val })}
@@ -239,7 +183,6 @@ export default function App() {
 
         <div className="buttons">
           <button onClick={generateDocx}>Generate Bill</button>
-          {/* <button className="print-btn" onClick={printPreview}>Print Preview</button> */}
         </div>
       </div>
     </div>
